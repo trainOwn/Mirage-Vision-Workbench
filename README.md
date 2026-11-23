@@ -2,7 +2,7 @@
 
 # 🌵 Mirage Vision Workbench
 
-**A local CPU benchmark + two Flask UIs for [Cactus Compute's Mirage](https://huggingface.co/Cactus-Compute/mirage) vision model**
+**A local CPU benchmark + a Flask UI for [Cactus Compute's Mirage](https://huggingface.co/Cactus-Compute/mirage) vision model**
 
 <p>
   <img alt="python" src="https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white">
@@ -22,7 +22,7 @@ poking at the output.
 
 <table>
 <tr>
-<td width="33%" valign="top">
+<td width="50%" valign="top">
 
 ### 🖥️ Real inference app
 `app.py` + `templates/` + `static/`
@@ -33,17 +33,7 @@ OCR boxes, relation lines, event badges — with a confidence slider, a
 click-to-spotlight inspector, and a raw-JSON terminal panel.
 
 </td>
-<td width="33%" valign="top">
-
-### 🪄 Portfolio demo
-`portfolio_demo/`
-
-Same JSON schema, zero ML dependency. Four real captured Mirage outputs
-are frozen as mock data so the polished hero/gallery/legend UI runs
-anywhere, instantly, for a portfolio or demo reel.
-
-</td>
-<td width="33%" valign="top">
+<td width="50%" valign="top">
 
 ### ⏱️ CPU benchmark
 `bench.py`
@@ -63,28 +53,10 @@ GUI required.
 All three pieces use [`uv`](https://github.com/astral-sh/uv) for fast,
 reproducible installs — no manual venv setup needed.
 
-<table>
-<tr><th>Real inference app</th><th>Portfolio demo (mock data)</th></tr>
-<tr>
-<td>
-
 ```bash
 uv run app.py
 # → http://127.0.0.1:5000
 ```
-
-</td>
-<td>
-
-```bash
-cd portfolio_demo
-uv run app.py
-# → http://127.0.0.1:5050
-```
-
-</td>
-</tr>
-</table>
 
 ```bash
 # CPU benchmark — bundled sample image, or point it at your own
@@ -168,10 +140,9 @@ One call, one JSON object, seven keys:
 
 **The one thing that trips people up**: `bbox` and `mask` coordinates are
 **not pixels** — they're normalized independently per axis to a `0–1000`
-scale (`x * 1000 / image_width`, `y * 1000 / image_height`). Both UIs in
-this repo draw straight from that space (SVG `viewBox="0 0 1000 1000"` in
-the portfolio demo, a canvas scaled by `/1000 * width|height` in the real
-app) so nothing needs manual rescaling.
+scale (`x * 1000 / image_width`, `y * 1000 / image_height`). The app draws
+straight from that space (a canvas scaled by `/1000 * width|height`) so
+nothing needs manual rescaling.
 
 ---
 
@@ -186,12 +157,7 @@ app) so nothing needs manual rescaling.
 ├── static/
 │   ├── css/style.css        # dark dev-terminal theme
 │   └── js/app.js            # canvas drawing, hover/click/spotlight, inspector
-├── test_images/             # sample jpgs used for benchmarking & demos
-└── portfolio_demo/          # standalone mock-data app, own pyproject.toml
-    ├── app.py
-    ├── mock_data/*.json      # 4 real captured Mirage outputs, frozen
-    ├── templates/{base,index,analyze}.html
-    └── static/{css,js,images/samples}/
+└── test_images/             # sample jpgs used for benchmarking & demos
 ```
 
 ---
