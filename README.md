@@ -166,8 +166,6 @@ nothing needs manual rescaling.
 
 - Model: [Cactus-Compute/mirage](https://huggingface.co/Cactus-Compute/mirage) · [blog post](https://cactuscompute.com/blog/mirage) · Apache 2.0
 - Python package: [`cactus-compute`](https://pypi.org/project/cactus-compute/) (`pip install -U cactus-compute`)
-- The real-inference app's GUI (workbench layout, canvas overlay, spotlight
-  interaction) is adapted from [joemaddalone/mirage-demo](https://github.com/joemaddalone/mirage-demo)
 
 <div align="center">
 <sub>Built for local experimentation — nothing here leaves your machine.</sub>
